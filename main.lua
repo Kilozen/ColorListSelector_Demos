@@ -11,9 +11,11 @@
     different font sizes & screen colors.)
 --]]
 
-
 --require "strict"
-local CLS = require('ColorListSelector')
+
+-- Prepare ColorListSelector (CLS)
+require "lib.ColorListSelector.ColorListConfig" -- First, get the CLS Config data from wherever you keep the file.
+local CLS = require "lib.ColorListSelector.ColorListSelector" -- Then get a handle to the API functions for CLS.
 
 
 local appWindow_mobile = {
@@ -37,12 +39,13 @@ local appWindow_larger = {
     resizable = true
 }
 
-local appWindow = appWindow_mobile -- assign whichever appWindow size to currently develop with
+-- assign whichever appWindow size you want to develop with currently...
+local appWindow = appWindow_mobile
 
 
 
 function love.load()
-    -- create the Love2D main app window 
+    -- create the Love2D main app window
     love.window.setMode(appWindow.width, appWindow.height,
         { resizable = appWindow.resizable, x = appWindow.xPos, y = appWindow.yPos })
 
@@ -51,7 +54,7 @@ function love.load()
     -- love.graphics.setBackgroundColor(0.2, 0, 0.2) -- bg color of the main window
 
 
-    CLS.load() -- let ColorListSelector do its initialization 
+    CLS.load() -- let ColorListSelector do its initialization
 end
 
 
@@ -65,10 +68,10 @@ end
 function love.draw()
     love.graphics.print("Example1", 20, 20)
 
-    love.graphics.setColor( CLS.buttonList[2].color )
+    love.graphics.setColor(CLS.buttonList[2].color)
     love.graphics.circle("fill", 200, 70, 40)
 
-    love.graphics.setColor( CLS.buttonList[1].color )
+    love.graphics.setColor(CLS.buttonList[1].color)
     love.graphics.circle("fill", 240, 50, 20)
 
 
